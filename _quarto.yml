@@ -1,0 +1,26 @@
+filters:
+  - shinylive
+  
+revealjs-plugins:
+  - revealjs-text-resizer
+  
+project:
+  type: website
+  output-dir: docs
+
+format: 
+  revealjs:
+    chalkboard: true
+    html-math-method: katex
+    theme: [default, resources/custom.scss]
+    css: resources/fonts.css
+    logo: resources/logo.png
+    footer: ""
+    template-partials:
+      - resources/title-slide.html
+    transition: slide
+    background-transition: fade
+    
+from: markdown+emoji
+
+lang: en

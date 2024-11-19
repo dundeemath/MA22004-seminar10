@@ -1,0 +1,325 @@
+---
+title: "Seminar 10"
+subtitle: "MA22004"
+date: "2024-11-20"
+author: "Dr Eric Hall   •   ehall001@dundee.ac.uk"
+format: 
+  revealjs:
+    chalkboard: true
+    html-math-method: katex
+    theme: [default, resources/custom.scss]
+    css: resources/fonts.css
+    logo: resources/logo.png
+    footer: ""
+    template-partials:
+      - resources/title-slide.html
+    transition: slide
+    background-transition: fade
+from: markdown+emoji
+lang: en
+---
+
+```{r}
+#| include: false
+options(knitr.kable.NA = '')
+knitr::opts_chunk$set(echo = FALSE, comment = "", fig.asp = .5)
+library(tidyverse)
+library(latex2exp)
+library(openintro)
+library(knitr)
+library(kableExtra)
+library(fontawesome)
+library(janitor)
+library(cowplot)
+
+beer <- read_csv("data/beer.csv")
+ipa_new <- read_csv("data/beer2.csv")
+ipa <- beer |> 
+ select(Batch_Id, pH, ABV, OG, IBU, Beer) |> 
+ filter(Beer == "IPA") |> 
+ rename(Day = Batch_Id)
+ipa$Day[1:48] <- rep(1:16, each = 3)
+ipa <- ipa[1:48,]
+m <- 3    # three batches per day
+k <- 16   # number of days
+
+lsz <- 1.0
+tsz <- 4
+theme_ur <- theme(legend.justification = c(1,1), legend.position = c(1,1), legend.box.margin = margin(c(4, 4, 4, 4), unit = "pt"))
+theme_lr <- theme(legend.justification = c(1,0), legend.position = c(1,0), legend.box.margin = margin(c(4, 4, 4, 4), unit = "pt"))
+
+theme_set(theme_classic())
+```
+
+# Announcements {.mySegue .center}
+:::{.hidden}
+\DeclareMathOperator{\Var}{Var}
+\DeclareMathOperator{\E}{\mathbf{E}}
+\DeclareMathOperator{\Cov}{Cov}
+\DeclareMathOperator{\corr}{corr}
+\newcommand{\se}{\mathsf{se}}
+\DeclareMathOperator{\sd}{sd}
+:::
+
+## Attendance
+
+::: {layout="[[-1], [1], [-1]]"}
+![](images/seats.png){fig-align="center" fig-alt="Register your attendance using SEAtS"}
+:::
+
+## Reminders 
+
+- Discuss `r fa("r-project")` labs at Thu workshop. 
+- Discuss worksheet R at Fri workshop.
+- Lab 7 due **Fri 2024-11-22** at **17:00**. 
+
+## Upcoming 
+
+- Next seminar: review session (including mock exam solutions)
+- Next Thursday workshop (double header): final Q&A and compare cheat sheets
+- Next Friday workshop: **cancelled**
+
+
+## `r fa("compass")` Outline of today
+
+- Quality control 
+- $3\sigma$ control charts
+- Bias correction
+
+# What is quality control?  {.mySegue .center}
+
+
+## Quality Control (QC) {.smaller}
+
+- Identify the sources of random variations in output processes that might have *assignable causes*.
+- **Control charts** help us to recognize when industrial processes are no longer controlled by using time series data to calculate the running value of a *quality statistic*. 
+- If the quality statistic exceeds upper/lower control limits, process is deemed to be out of control (quality negatively impacted).
+
+:::{.callout-note}
+## Workflow:
+
+time series $\longrightarrow$ control chart $\longrightarrow$ identify assignable causes 
+:::
+
+## Beer Data: IPA
+
+:::: {.columns}
+:::{.column width="50%"}
+A brewer produces 3 batches of IPA per day and measures the pH value of each batch, which influences saccharification. 
+:::
+
+:::{.column width="50%"}
+
+![](images/pH.png){width=100% fig.alt="pH scale."}
+:::
+::::
+
+## Beer Data
+
+```{r}
+#| echo: true
+#| eval: true
+#| fig-cap: "Note three observations per day."
+ipa |> ggplot(aes(x = Day, y = pH)) + geom_point(size = 2)
+```
+
+# $3\sigma$ Control Charts {.mySegue .center}
+
+## Control charts {.smaller}
+
+- We consider the typical $3\sigma$ control chart for the mean pH.
+- Assume generating process $X$ is distributed like $\mathsf{N}(\mu, \sigma^2)$ (i.e., so that the measurements of pH at different times are all samples from a normal distribution). 
+- Our control region is specified to by three standard deviations from the population mean: $$\mu \pm 3 \sigma \,.$$
+- The process remains in control if it stays three deviations within a baseline value. 
+
+:::{.callout-tip}
+## $3\sigma$
+
+Why consider three standard deviations from the mean?
+:::
+
+
+## Chebyshev's inequality
+
+::::{.columns}
+:::{.column width="30%"}
+![](images/chebyshev.png){width=100%  fig-alt="Portrait of Pafnuty Chebyshev from wikipedia."}
+:::
+
+:::{.column width="70%}
+$$P( |X - \mu| \geq k\sigma) \leq \frac{1}{k^2}$$
+
+where $\mu = \mathbf{E}(X)$ and $\sigma^2 = \text{Var}(X)$. 
+:::
+::::
+
+## In particular, for Normals...
+
+::::{.columns}
+:::{.column width="33%"}
+![](images/95.png){width=100% fig-alt="Church of the 95% Confidence Interval (joke tweet)."}
+:::
+
+:::{.column width="67%"}
+![](images/3sigma.png){width=100% fig-alt="Normal distribution showing rule-of-thumb."}
+:::
+::::
+
+
+## Normality check: `qqplot`
+
+```{r}
+#| echo: true
+#| eval: true
+ipa |> ggplot(aes(sample = pH)) + 
+  stat_qq(size = 2) + stat_qq_line(color = "purple")
+```
+
+## Normality check: `shapiro.test`
+
+Shapiro--Wilk tests the null hypothesis that a given sample (of moderate size) came from a normally distributed population. Thus if $P$-value small, reject null and do no proceed. 
+
+```{r}
+#| echo: true
+#| eval: true
+shapiro.test(ipa$pH)
+```
+
+:::{.callout-warning}
+## Remember
+
+Failing to reject null does *not* tell us the population is normally distributed...
+:::
+
+## Checking for normality ?
+
+:::{.callout-tip}
+If the sample size is *large*, which should we use  
+(`qqplot` vs `shapiro.test`)?
+:::
+
+## Constructing a control chart {.smaller}
+
+```{r}
+#| echo: false
+#| eval: true
+#| message: false
+ipa_stat <- ipa |> 
+   group_by(Day) |> 
+   summarise(observations = list(pH), mean = signif(mean(pH), digits = 4), 
+             sd = signif(sd(pH), digits = 4), range = max(pH) - min(pH))
+   
+kbl(head(ipa_stat), align = "clccc", 
+    col.names = c('Day', "pH Observations", 'Sample mean', 'Sample sd', 'Range'),
+    booktabs = T)
+```
+
+In this situation, we don't know $\mu$ or $\sigma$. 
+
+Best guesses are given by the point estimates: $\widehat{\mu}$ and $\widehat{\sigma}$.
+
+# Bias correction {.mySegue .center}
+
+## Bias in the mix {.smaller}
+
+- Theoretically, we are assuming that the variation might come from two sources: *common-causes* and *special-causes*. 
+- The sample variance, 
+$$S^2 = \frac{1}{n-1} \sum_{i=1}^{n} (X_i - \bar{X})^2$$
+estimates the total squared-error loss from all causes of variation. 
+- Our default position is to assume that the process is under control. Therefore our estimator for the variation should be the estimator for the variation from  common-causes alone.
+
+## Estimating $\sigma$ (bias correction)
+
+For $X_1, \dots, X_n \sim \mathsf{N}(\mu,\sigma^2)$,
+$$\E(S) = a_n \cdot \sigma$$
+where the *bias correction* can be computed exactly:
+$$a_n = \sqrt{\frac{2}{n-1}}\frac{\Gamma(\tfrac{n}{2})}{\Gamma(\tfrac{n-1}{2})} \,.$$
+
+```{r}
+#| echo: false
+#| eval: true
+#| message: false
+
+cor <- rbind(c("n", seq(3,8,1)), 
+             c("a_n", .886,.921,.940,.952,.959,.965))
+kbl(cor, booktabs = T)
+```
+
+## Unbiassed check
+
+- Let's check $\hat{\sigma} = \overline{S} / a_n$ is an unbiased estimator.
+- Let $\overline{S} = \frac{1}{k} \sum_{i=1}^k S_i$, where $S_i$ are the sd for $k$ days.
+
+- $\mathbf{E} (\overline{S}) = ?$
+
+
+:::{.notes}
+- Then 
+$$\mathbf{E}(\overline{S}) = \frac{1}{k} \mathbf{E}\left(\sum_{i=1}^k S_i\right) = \frac{1}{k} \sum_{i=1}^{k} \mathbf{E}(S_i) = \frac{1}{k} \sum_{i=1}^{k} a_n \sigma  = a_n \sigma $$
+
+- Thus
+$$\mathbf{E}(\overline{S}/a_n) = \frac{1}{a_n} \mathbf{E}(\overline{S}) = \frac{1}{a_n} a_n \sigma = \sigma $$
+- so $\widehat{\sigma} = \overline{S} / a_n$ is an unbiased estimator of $\sigma$. 
+:::
+
+
+## Control limits based on sample sds
+
+$$\mathsf{LCL} = \widehat{\mu} - 3 \frac{\overline{s}}{a_n \sqrt{n}}$$
+$$\mathsf{UCL} = \widehat{\mu} + 3 \frac{\overline{s}}{a_n \sqrt{n}}$$
+where 
+
+$\widehat{\mu} = \frac{1}{k} \sum_{i=1}^k \overline{x}_i$
+
+$\overline{s} = \frac{1}{k} \sum_{i=1}^k s_i$
+
+## Control Chart
+
+```{r}
+#| echo: false
+#| warning: false
+#| message: false
+#| fig-cap: "We assume the process is in-control over the 16 days and compute the limits. Violation would require that we seek to identify an assignable cause."
+#| cap-location: margin
+
+a <- function(m){sqrt(2) * gamma(m/2) / (sqrt(m-1) * gamma((m-1)/2))}
+muhat <- sum(ipa_stat$mean) / k
+sbar <- sum(ipa_stat$sd) / k
+lcl <- muhat - 3*sbar / (a(m) * sqrt(m))
+ucl <- muhat + 3*sbar / (a(m) * sqrt(m))
+
+ipa_new |> ggplot(aes(x = Day)) + 
+  geom_point(aes(y = mean)) + 
+  geom_hline(aes(yintercept = muhat, color = "Mean"), size = lsz) +
+  geom_hline(aes(yintercept = lcl, color = "LCL"), size = lsz*1.5) +
+  geom_hline(aes(yintercept = ucl, color = "UCL"), size = lsz*1.5) + 
+    geom_rect(aes(ymin = lcl, ymax = ucl), fill = "purple", 
+    xmin = -Inf, xmax = Inf, alpha = 0.01) +  
+  annotate(geom = "text", x = ipa_new$Day[13] -0.25, y = ipa_new$mean[13], label = "Out of control →", hjust = "right") +
+  annotate(geom = "text", x = ipa_new$Day[1] -0.25, y = lcl+.1, label = "Control region", hjust = "left") +
+  ylab("pH") + 
+  theme(legend.justification = c(1,1),
+        legend.title = element_blank(), 
+        legend.box.margin = margin(c(4, 4, 4, 4), unit = "pt"))
+```  
+
+## Assignable causes
+
+:::{.callout-warning}
+## The quality control chart analysis does not *identify* assignable causes.  
+
+The analysis simply suggests further investigation to identify an assignable cause might be prudent. 
+:::
+
+
+# Summary {.smaller}
+
+Today we discussed control charts for Quality Control. 
+
+We learned about a bias correction for estimating the standard deviation due to common-cause variation. 
+
+:::{.callout-tip}
+## Today's materials 
+
+Slides posted to <https://dundeemath.github.io/MA22004-seminar10>.
+:::
