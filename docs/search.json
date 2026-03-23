@@ -11,14 +11,14 @@
     "href": "seminar10.html#reminders",
     "title": "Seminar 10",
     "section": "Reminders",
-    "text": "Reminders\n\nDiscuss  labs at Thu workshop.\nDiscuss worksheet R at Fri workshop.\nLab 7 due Fri 2024-11-22 at 17:00."
+    "text": "Reminders\n\nDiscuss  labs at Wed workshop.\nDiscuss worksheet R at Thu workshop.\nLab 7 due Fri 2026-03-27 at 17:00."
   },
   {
-    "objectID": "seminar10.html#upcoming",
-    "href": "seminar10.html#upcoming",
+    "objectID": "seminar10.html#upcoming---week-11",
+    "href": "seminar10.html#upcoming---week-11",
     "title": "Seminar 10",
-    "section": "Upcoming",
-    "text": "Upcoming\n\nNext seminar: review session (including mock exam solutions)\nNext Thursday workshop (double header): final Q&A and compare cheat sheets\nNext Friday workshop: cancelled"
+    "section": "Upcoming - week 11",
+    "text": "Upcoming - week 11\n\nNext seminar: review session (including mock exam solutions)\nNext Wednesday workshop (double header): final Q&A and compare cheat sheets\nNext Thursday workshop: revision"
   },
   {
     "objectID": "seminar10.html#outline-of-today",
@@ -81,7 +81,7 @@
     "href": "seminar10.html#normality-check-shapiro.test",
     "title": "Seminar 10",
     "section": "Normality check: shapiro.test",
-    "text": "Normality check: shapiro.test\nShapiro–Wilk tests the null hypothesis that a given sample (of moderate size) came from a normally distributed population. Thus if P-value small, reject null and do no proceed.\n\nshapiro.test(ipa$pH)\n\n\n    Shapiro-Wilk normality test\n\ndata:  ipa$pH\nW = 0.96781, p-value = 0.2079\n\n\n\n\n\n\n\n\nRemember\n\n\nFailing to reject null does not tell us the population is normally distributed…"
+    "text": "Normality check: shapiro.test\nShapiro–Wilk tests the null hypothesis that a given sample (of moderate size) came from a normally distributed population. Thus if P-value small, reject null and do not proceed.\n\nshapiro.test(ipa$pH)\n\n\n    Shapiro-Wilk normality test\n\ndata:  ipa$pH\nW = 0.96781, p-value = 0.2079\n\n\n\n\n\n\n\n\nRemember\n\n\nFailing to reject null does not tell us the population is normally distributed…"
   },
   {
     "objectID": "seminar10.html#checking-for-normality",
@@ -95,7 +95,7 @@
     "href": "seminar10.html#constructing-a-control-chart",
     "title": "Seminar 10",
     "section": "Constructing a control chart",
-    "text": "Constructing a control chart\n\n\n\n\n\n\nDay\npH Observations\nSample mean\nSample sd\nRange\n\n\n\n\n1\n4.7, 4.5, 4.9\n4.700\n0.2000\n0.4\n\n\n2\n4.0, 4.6, 4.5\n4.367\n0.3215\n0.6\n\n\n3\n4.7, 3.3, 4.6\n4.200\n0.7810\n1.4\n\n\n4\n3.9, 3.5, 4.2\n3.867\n0.3512\n0.7\n\n\n5\n4.0, 4.7, 3.6\n4.100\n0.5568\n1.1\n\n\n6\n4.4, 4.5, 4.1\n4.333\n0.2082\n0.4\n\n\n\n\n\n\n\n\nIn this situation, we don’t know \\mu or \\sigma.\nBest guesses are given by the point estimates: \\widehat{\\mu} and \\widehat{\\sigma}."
+    "text": "Constructing a control chart\n\n\n\n\n\nDay\npH Observations\nSample mean\nSample sd\nRange\n\n\n\n\n1\n4.7, 4.5, 4.9\n4.700\n0.2000\n0.4\n\n\n2\n4.0, 4.6, 4.5\n4.367\n0.3215\n0.6\n\n\n3\n4.7, 3.3, 4.6\n4.200\n0.7810\n1.4\n\n\n4\n3.9, 3.5, 4.2\n3.867\n0.3512\n0.7\n\n\n5\n4.0, 4.7, 3.6\n4.100\n0.5568\n1.1\n\n\n6\n4.4, 4.5, 4.1\n4.333\n0.2082\n0.4\n\n\n\n\n\n\n\nIn this situation, we don’t know \\mu or \\sigma.\nBest guesses are given by the point estimates: \\widehat{\\mu} and \\widehat{\\sigma}."
   },
   {
     "objectID": "seminar10.html#bias-in-the-mix",
@@ -109,14 +109,14 @@
     "href": "seminar10.html#estimating-sigma-bias-correction",
     "title": "Seminar 10",
     "section": "Estimating \\sigma (bias correction)",
-    "text": "Estimating \\sigma (bias correction)\nFor X_1, \\dots, X_n \\sim \\mathsf{N}(\\mu,\\sigma^2), \\mathop{\\mathrm{\\mathbf{E}}}(S) = a_n \\cdot \\sigma where the bias correction can be computed exactly: a_n = \\sqrt{\\frac{2}{n-1}}\\frac{\\Gamma(\\tfrac{n}{2})}{\\Gamma(\\tfrac{n-1}{2})} \\,.\n\n\n\n\n\n\nn\n3\n4\n5\n6\n7\n8\n\n\na_n\n0.886\n0.921\n0.94\n0.952\n0.959\n0.965"
+    "text": "Estimating \\sigma (bias correction)\nFor X_1, \\dots, X_n \\sim \\mathsf{N}(\\mu,\\sigma^2), \\mathop{\\mathrm{\\mathbf{E}}}(S) = a_n \\cdot \\sigma where the bias correction can be computed exactly: a_n = \\sqrt{\\frac{2}{n-1}}\\frac{\\Gamma(\\tfrac{n}{2})}{\\Gamma(\\tfrac{n-1}{2})} \\,.\n\n\n\n\n\nn\n3\n4\n5\n6\n7\n8\n\n\na_n\n0.886\n0.921\n0.94\n0.952\n0.959\n0.965"
   },
   {
-    "objectID": "seminar10.html#unbiassed-check",
-    "href": "seminar10.html#unbiassed-check",
+    "objectID": "seminar10.html#unbiased-check",
+    "href": "seminar10.html#unbiased-check",
     "title": "Seminar 10",
-    "section": "Unbiassed check",
-    "text": "Unbiassed check\n\nLet’s check \\hat{\\sigma} = \\overline{S} / a_n is an unbiased estimator.\nLet \\overline{S} = \\frac{1}{k} \\sum_{i=1}^k S_i, where S_i are the sd for k days.\n\\mathbf{E} (\\overline{S}) = ?\n\n\n\nThen \\mathbf{E}(\\overline{S}) = \\frac{1}{k} \\mathbf{E}\\left(\\sum_{i=1}^k S_i\\right) = \\frac{1}{k} \\sum_{i=1}^{k} \\mathbf{E}(S_i) = \\frac{1}{k} \\sum_{i=1}^{k} a_n \\sigma  = a_n \\sigma \nThus \\mathbf{E}(\\overline{S}/a_n) = \\frac{1}{a_n} \\mathbf{E}(\\overline{S}) = \\frac{1}{a_n} a_n \\sigma = \\sigma \nso \\widehat{\\sigma} = \\overline{S} / a_n is an unbiased estimator of \\sigma."
+    "section": "Unbiased check",
+    "text": "Unbiased check\n\nLet’s check \\hat{\\sigma} = \\overline{S} / a_n is an unbiased estimator.\nLet \\overline{S} = \\frac{1}{k} \\sum_{i=1}^k S_i, where S_i are the sd for k days.\n\\mathbf{E} (\\overline{S}) = ?\n\n\n\nThen \\mathbf{E}(\\overline{S}) = \\frac{1}{k} \\mathbf{E}\\left(\\sum_{i=1}^k S_i\\right) = \\frac{1}{k} \\sum_{i=1}^{k} \\mathbf{E}(S_i) = \\frac{1}{k} \\sum_{i=1}^{k} a_n \\sigma  = a_n \\sigma \nThus \\mathbf{E}(\\overline{S}/a_n) = \\frac{1}{a_n} \\mathbf{E}(\\overline{S}) = \\frac{1}{a_n} a_n \\sigma = \\sigma \nso \\widehat{\\sigma} = \\overline{S} / a_n is an unbiased estimator of \\sigma."
   },
   {
     "objectID": "seminar10.html#control-limits-based-on-sample-sds",

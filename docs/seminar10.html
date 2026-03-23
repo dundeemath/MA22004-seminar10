@@ -8,9 +8,9 @@
 <link href="site_libs/quarto-html/light-border.css" rel="stylesheet">
 <link href="site_libs/quarto-html/quarto-html.min.css" rel="stylesheet" data-mode="light">
 <link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
-  <meta name="generator" content="quarto-1.4.554">
+  <meta name="generator" content="quarto-1.5.43">
 
-  <meta name="author" content="Dr Eric Hall • ehall001@dundee.ac.uk">
+  <meta name="author" content="Dr John McDermott • jzmcdermott@dundee.ac.uk">
   <meta name="dcterms.date" content="2024-11-20">
   <title>Seminar 10</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -43,7 +43,7 @@
     }
     @media print {
     pre > code.sourceCode { white-space: pre-wrap; }
-    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+    pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
     }
     pre.numberSource code
       { counter-reset: source-line 0; }
@@ -71,7 +71,7 @@
     code span.at { color: #657422; } /* Attribute */
     code span.bn { color: #ad0000; } /* BaseN */
     code span.bu { } /* BuiltIn */
-    code span.cf { color: #003b4f; } /* ControlFlow */
+    code span.cf { color: #003b4f; font-weight: bold; } /* ControlFlow */
     code span.ch { color: #20794d; } /* Char */
     code span.cn { color: #8f5902; } /* Constant */
     code span.co { color: #5e5e5e; } /* Comment */
@@ -85,7 +85,7 @@
     code span.fu { color: #4758ab; } /* Function */
     code span.im { color: #00769e; } /* Import */
     code span.in { color: #5e5e5e; } /* Information */
-    code span.kw { color: #003b4f; } /* Keyword */
+    code span.kw { color: #003b4f; font-weight: bold; } /* Keyword */
     code span.op { color: #5e5e5e; } /* Operator */
     code span.ot { color: #003b4f; } /* Other */
     code span.pp { color: #ad0000; } /* Preprocessor */
@@ -98,7 +98,7 @@
   </style>
   <link rel="stylesheet" href="site_libs/revealjs/dist/theme/quarto.css">
   <link rel="stylesheet" href="resources/fonts.css">
-  <script>window.backupDefine = window.define; window.define = undefined;</script><script src="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.js"></script>
+  <script>window.backupDefine = window.define; window.define = undefined;</script><script src="https://cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.js"></script>
   <script>document.addEventListener("DOMContentLoaded", function () {
  var mathElements = document.getElementsByClassName("math");
  var macros = [];
@@ -113,7 +113,7 @@
    });
 }}});
   </script>
-  <script>window.define = window.backupDefine; window.backupDefine = undefined;</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.css">
+  <script>window.define = window.backupDefine; window.backupDefine = undefined;</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.css">
   <link href="site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
   <link href="site_libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
   <link href="site_libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
@@ -416,9 +416,9 @@
   <img class="logo" src="resources/rev_logo.png" alt="University of Dundee Logo">
   <br>
   <h1 class="title">Seminar 10</h1>
-  <p class="subtitle">MA22004</p>
+  <p class="subtitle">MA22004/MA52008</p>
   <br>
-  <p class="author">Dr Eric Hall • ehall001@dundee.ac.uk</p>
+  <p class="author">Dr John McDermott • jzmcdermott@dundee.ac.uk</p>
   <p class="date">2024-11-20</p>
 </section>
 <section>
@@ -430,6 +430,9 @@
 </section>
 <section id="attendance" class="slide level2">
 <h2>Attendance</h2>
+<div>
+
+</div>
 <div class="quarto-layout-panel" data-layout="[[-1], [1], [-1]]">
 <div class="quarto-layout-row">
 <div class="quarto-figure-spacer quarto-layout-cell" style="flex-basis: 100.0%;justify-content: flex-start;">
@@ -450,17 +453,17 @@
 <section id="reminders" class="slide level2">
 <h2>Reminders</h2>
 <ul>
-<li>Discuss <svg aria-hidden="true" role="img" viewbox="0 0 581 512" style="height:1em;width:1.13em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:currentColor;overflow:visible;position:relative;"><path d="M581 226.6C581 119.1 450.9 32 290.5 32S0 119.1 0 226.6C0 322.4 103.3 402 239.4 418.1V480h99.1v-61.5c24.3-2.7 47.6-7.4 69.4-13.9L448 480h112l-67.4-113.7c54.5-35.4 88.4-84.9 88.4-139.7zm-466.8 14.5c0-73.5 98.9-133 220.8-133s211.9 40.7 211.9 133c0 50.1-26.5 85-70.3 106.4-2.4-1.6-4.7-2.9-6.4-3.7-10.2-5.2-27.8-10.5-27.8-10.5s86.6-6.4 86.6-92.7-90.6-87.9-90.6-87.9h-199V361c-74.1-21.5-125.2-67.1-125.2-119.9zm225.1 38.3v-55.6c57.8 0 87.8-6.8 87.8 27.3 0 36.5-38.2 28.3-87.8 28.3zm-.9 72.5H365c10.8 0 18.9 11.7 24 19.2-16.1 1.9-33 2.8-50.6 2.9v-22.1z"></path></svg> labs at Thu workshop.</li>
-<li>Discuss worksheet R at Fri workshop.</li>
-<li>Lab 7 due <strong>Fri 2024-11-22</strong> at <strong>17:00</strong>.</li>
+<li>Discuss <svg aria-hidden="true" role="img" viewbox="0 0 581 512" style="height:1em;width:1.13em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:currentColor;overflow:visible;position:relative;"><path d="M581 226.6C581 119.1 450.9 32 290.5 32S0 119.1 0 226.6C0 322.4 103.3 402 239.4 418.1V480h99.1v-61.5c24.3-2.7 47.6-7.4 69.4-13.9L448 480h112l-67.4-113.7c54.5-35.4 88.4-84.9 88.4-139.7zm-466.8 14.5c0-73.5 98.9-133 220.8-133s211.9 40.7 211.9 133c0 50.1-26.5 85-70.3 106.4-2.4-1.6-4.7-2.9-6.4-3.7-10.2-5.2-27.8-10.5-27.8-10.5s86.6-6.4 86.6-92.7-90.6-87.9-90.6-87.9h-199V361c-74.1-21.5-125.2-67.1-125.2-119.9zm225.1 38.3v-55.6c57.8 0 87.8-6.8 87.8 27.3 0 36.5-38.2 28.3-87.8 28.3zm-.9 72.5H365c10.8 0 18.9 11.7 24 19.2-16.1 1.9-33 2.8-50.6 2.9v-22.1z"></path></svg> labs at Wed workshop.</li>
+<li>Discuss worksheet R at Thu workshop.</li>
+<li>Lab 7 due <strong>Fri 2026-03-27</strong> at <strong>17:00</strong>.</li>
 </ul>
 </section>
-<section id="upcoming" class="slide level2">
-<h2>Upcoming</h2>
+<section id="upcoming---week-11" class="slide level2">
+<h2>Upcoming - week 11</h2>
 <ul>
 <li>Next seminar: review session (including mock exam solutions)</li>
-<li>Next Thursday workshop (double header): final Q&amp;A and compare cheat sheets</li>
-<li>Next Friday workshop: <strong>cancelled</strong></li>
+<li>Next Wednesday workshop (double header): final Q&amp;A and compare cheat sheets</li>
+<li>Next Thursday workshop: revision</li>
 </ul>
 </section>
 <section id="outline-of-today" class="slide level2">
@@ -572,7 +575,7 @@
 <img data-src="seminar10_files/figure-revealjs/unnamed-chunk-3-1.png" width="960" class="r-stretch"></section>
 <section id="normality-check-shapiro.test" class="slide level2">
 <h2>Normality check: <code>shapiro.test</code></h2>
-<p>Shapiro–Wilk tests the null hypothesis that a given sample (of moderate size) came from a normally distributed population. Thus if <span class="math inline">P</span>-value small, reject null and do no proceed.</p>
+<p>Shapiro–Wilk tests the null hypothesis that a given sample (of moderate size) came from a normally distributed population. Thus if <span class="math inline">P</span>-value small, reject null and do not proceed.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a></a><span class="fu">shapiro.test</span>(ipa<span class="sc">$</span>pH)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -618,8 +621,7 @@ W = 0.96781, p-value = 0.2079</code></pre>
 <h2>Constructing a control chart</h2>
 <div class="cell">
 <div class="cell-output-display">
-<div>
-<table data-quarto-postprocess="true">
+<table class="caption-top" data-quarto-postprocess="true">
 <thead>
 <tr class="header">
 <th style="text-align: center;" data-quarto-table-cell-role="th">Day</th>
@@ -678,7 +680,6 @@ W = 0.96781, p-value = 0.2079</code></pre>
 
 </div>
 </div>
-</div>
 <p>In this situation, we don’t know <span class="math inline">\mu</span> or <span class="math inline">\sigma</span>.</p>
 <p>Best guesses are given by the point estimates: <span class="math inline">\widehat{\mu}</span> and <span class="math inline">\widehat{\sigma}</span>.</p>
 </section></section>
@@ -700,8 +701,7 @@ W = 0.96781, p-value = 0.2079</code></pre>
 <p>For <span class="math inline">X_1, \dots, X_n \sim \mathsf{N}(\mu,\sigma^2)</span>, <span class="math display">\mathop{\mathrm{\mathbf{E}}}(S) = a_n \cdot \sigma</span> where the <em>bias correction</em> can be computed exactly: <span class="math display">a_n = \sqrt{\frac{2}{n-1}}\frac{\Gamma(\tfrac{n}{2})}{\Gamma(\tfrac{n-1}{2})} \,.</span></p>
 <div class="cell">
 <div class="cell-output-display">
-<div>
-<table data-quarto-postprocess="true">
+<table class="caption-top" data-quarto-postprocess="true">
 <tbody>
 <tr class="odd">
 <td style="text-align: left;">n</td>
@@ -727,10 +727,9 @@ W = 0.96781, p-value = 0.2079</code></pre>
 
 </div>
 </div>
-</div>
 </section>
-<section id="unbiassed-check" class="slide level2">
-<h2>Unbiassed check</h2>
+<section id="unbiased-check" class="slide level2">
+<h2>Unbiased check</h2>
 <ul>
 <li><p>Let’s check <span class="math inline">\hat{\sigma} = \overline{S} / a_n</span> is an unbiased estimator.</p></li>
 <li><p>Let <span class="math inline">\overline{S} = \frac{1}{k} \sum_{i=1}^k S_i</span>, where <span class="math inline">S_i</span> are the sd for <span class="math inline">k</span> days.</p></li>
@@ -1069,18 +1068,7 @@ W = 0.96781, p-value = 0.2079</code></pre>
         }
         return false;
       }
-      const clipboard = new window.ClipboardJS('.code-copy-button', {
-        text: function(trigger) {
-          const codeEl = trigger.previousElementSibling.cloneNode(true);
-          for (const childEl of codeEl.children) {
-            if (isCodeAnnotation(childEl)) {
-              childEl.remove();
-            }
-          }
-          return codeEl.innerText;
-        }
-      });
-      clipboard.on('success', function(e) {
+      const onCopySuccess = function(e) {
         // button target
         const button = e.trigger;
         // don't keep focus
@@ -1112,7 +1100,29 @@ W = 0.96781, p-value = 0.2079</code></pre>
         }, 1000);
         // clear code selection
         e.clearSelection();
+      }
+      const getTextToCopy = function(trigger) {
+          const codeEl = trigger.previousElementSibling.cloneNode(true);
+          for (const childEl of codeEl.children) {
+            if (isCodeAnnotation(childEl)) {
+              childEl.remove();
+            }
+          }
+          return codeEl.innerText;
+      }
+      const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+        text: getTextToCopy
       });
+      clipboard.on('success', onCopySuccess);
+      if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+        // For code content inside modals, clipBoardJS needs to be initialized with a container option
+        // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
+        const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+          text: getTextToCopy,
+          container: window.document.getElementById('quarto-embedded-source-code-modal')
+        });
+        clipboardModal.on('success', onCopySuccess);
+      }
         var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
         var mailtoRegex = new RegExp(/^mailto:/);
           var filterRegex = new RegExp('/' + window.location.host + '/');
@@ -1120,7 +1130,7 @@ W = 0.96781, p-value = 0.2079</code></pre>
             return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
         }
         // Inspect non-navigation links and adorn them if external
-     	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool)');
+     	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
         for (var i=0; i<links.length; i++) {
           const link = links[i];
           if (!isInternal(link.href)) {

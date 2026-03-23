@@ -1,8 +1,8 @@
 ---
 title: "Seminar 10"
-subtitle: "MA22004"
+subtitle: "MA22004/MA52008"
 date: "2024-11-20"
-author: "Dr Eric Hall   •   ehall001@dundee.ac.uk"
+author: "Dr John McDermott   •   jzmcdermott@dundee.ac.uk"
 format: 
   revealjs:
     chalkboard: true
@@ -69,15 +69,15 @@ theme_set(theme_classic())
 
 ## Reminders 
 
-- Discuss `r fa("r-project")` labs at Thu workshop. 
-- Discuss worksheet R at Fri workshop.
-- Lab 7 due **Fri 2024-11-22** at **17:00**. 
+- Discuss `r fa("r-project")` labs at Wed workshop. 
+- Discuss worksheet R at Thu workshop.
+- Lab 7 due **Fri 2026-03-27** at **17:00**. 
 
-## Upcoming 
+## Upcoming - week 11
 
 - Next seminar: review session (including mock exam solutions)
-- Next Thursday workshop (double header): final Q&A and compare cheat sheets
-- Next Friday workshop: **cancelled**
+- Next Wednesday workshop (double header): final Q&A and compare cheat sheets
+- Next Thursday workshop: revision
 
 
 ## `r fa("compass")` Outline of today
@@ -177,7 +177,7 @@ ipa |> ggplot(aes(sample = pH)) +
 
 ## Normality check: `shapiro.test`
 
-Shapiro--Wilk tests the null hypothesis that a given sample (of moderate size) came from a normally distributed population. Thus if $P$-value small, reject null and do no proceed. 
+Shapiro--Wilk tests the null hypothesis that a given sample (of moderate size) came from a normally distributed population. Thus if $P$-value small, reject null and do not proceed. 
 
 ```{r}
 #| echo: true
@@ -245,7 +245,7 @@ cor <- rbind(c("n", seq(3,8,1)),
 kbl(cor, booktabs = T)
 ```
 
-## Unbiassed check
+## Unbiased check
 
 - Let's check $\hat{\sigma} = \overline{S} / a_n$ is an unbiased estimator.
 - Let $\overline{S} = \frac{1}{k} \sum_{i=1}^k S_i$, where $S_i$ are the sd for $k$ days.
